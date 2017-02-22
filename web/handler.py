@@ -17,9 +17,9 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
 
 
         # XXX : It should be coded differently
-        self.static = "/home/enzo/Documents/Projets/pythonWeb/static" # static # Absolute path to the static part of the website
+        self.static = "./static" # static # Absolute path to the static part of the website
         self.api = {} # api # Dictionary containing all the api that should be used/served
-        self.notfound = "/tmp/test" # staticnotfound # Absolute path to a 404 display
+        self.notfound = "" # staticnotfound # Absolute path to a 404 display
 
         super().__init__(r, ca, s)
 
@@ -57,6 +57,7 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
             self.do404()
             return
 
+        # Add the requested path to the absolute static path
         for dirs in filter(None, filepath.split("/")):
             source = os.path.join(source, dirs)
 
@@ -68,6 +69,7 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
             return
 
         self.send_response(200)
+        # TODO : Add the header line : Content-Type (parsing needed)
         self.end_headers()
 
         shutil.copyfileobj(sourcefile, self.wfile)
@@ -101,7 +103,7 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
                 self.send_header("Allow", ", ".join(api.supported))
                 self.send_error(405, "Method not allowed")
                 return
-            # Here all preliminary
+            # Here all preliminary checks are done
             run = getattr(api, proto);
             result = run(self.rfile)
 

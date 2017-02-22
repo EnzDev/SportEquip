@@ -12,15 +12,17 @@ from api import * # Import the API that will be given to the server
 
 from http import server # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)
 
-TEST_PORT = 8080
+TEST_PORT = 8008
 PROD_PORT = 80
 
-bind = "" # Same as localhost or 127.0.0.1
+bind = "127.0.0.1" # Same as localhost or 127.0.0.1
 port = TEST_PORT
 
 print( "Going to listen at {} on port {}".format("localhost" if bind=="" else bind, port) )
 
+
 serv = server.HTTPServer((bind, port), handler.serverHandler)
+
 try:
     serv.serve_forever()
 except KeyboardInterrupt:
