@@ -1,0 +1,98 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12 mars 2017, 14:46:17
+    Author     : Lea
+*/
+*{
+margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+	color: inherit;
+        font-family: verdana;
+}
+
+#header{
+    background-color: #3498DB;
+    height: 23vh;
+}
+#recherche{
+   height: 20vh;
+    
+}
+
+#nbResult{
+    background-color: #2980B9;
+    height: 3vh;
+    width: 95vw;
+    font-size: 0.7em;
+    color: #3498DB;
+    font-style: italic;
+    padding-left: 5vw;
+}
+form{
+    padding: 1%;
+     text-align: center;
+}
+#rightPanel{
+    background-color: #C0392B;
+    float: right;
+    height: 77vh;
+    width: 20vw;
+}
+#rightPanel ul {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+}
+#rightPanel ul li:nth-child(odd){
+    background-color: #e74c3c; 
+}
+#map{
+    background-color: #fff;
+    height: 77vh;
+    width: 80vw;
+}
+
+#geoloc{
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #3498DB;
+    height: 30px;  
+    width: 30px;
+    transition-duration: 0.4s;
+    padding: 0px;
+
+}
+#geoloc:hover{
+     background-color: #2980B9; 
+    color: white;
+
+}
+
+  input[type=text] {
+    padding:3px; 
+    border:2px solid #2980B9; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom : 2px;
+}
+  input[type=number] {
+    padding:3px; 
+    border:2px solid #2980B9; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom : 2px;
+}
+
+
+
+
+
