@@ -7,14 +7,14 @@ class DAO():
         cursor = conn.cursor()
         conn.close()
         
-    #Return all the the activities that start with the same latters as the input_string
+    # Return all the the activities that start with the same latters as the input_string
     def guess_input_activites(input_string):
-        #todo    
+        # todo
         return 0;
         
-    #Return a sorted list of the activites. Sorted by distance to the position
+    # Return a sorted list of the activites. Sorted by distance to the position
     def get_activities(position):
-        #todo    
+        # todo
         return 0;
    
 

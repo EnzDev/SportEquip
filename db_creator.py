@@ -18,7 +18,9 @@ except mysql.connector.Error as err:
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
         print("Database does not exist")
     else:
-        print (err)
+        print(err)
+    conn.close()
+    exit(-1)
 
 ## recuperer les créateurs de base chez enzo
 
