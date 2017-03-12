@@ -37,7 +37,7 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
         handleReq("DELETE")
 
     def handleReq(self, proto):
-        print(self.path)
+        # print(self.path)
         if(isAPI(self.path)):
             self.handleAPI(proto)
         else:
@@ -63,9 +63,9 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
 
         try :
             sourcefile = open(source, "rb")
-        except Exception:
+        except FileNotFoundError:
             # File not found or denied
-            self.do404()
+            self.do404(filepath)
             return
 
         self.send_response(200)
@@ -74,10 +74,13 @@ class serverHandler(http.server.BaseHTTPRequestHandler):
 
         shutil.copyfileobj(sourcefile, self.wfile)
 
-    def do404(self):
+    def do404(self, filename):
         self.send_response(404)
         self.end_headers()
-        shutil.copyfileobj(open(self.notfound, "rb"), self.wfile)
+        try:
+            shutil.copyfileobj(open(self.notfound, "rb"), self.wfile)
+        except FileNotFoundError: # In case the 404 page is not defined..
+            self.wfile.write(str.encode("Fichier non trouvé... ("+filename+")"))
 
     def handleAPI(self, proto):
         # Be sure that we respect the form /api/sub/resource so 3 items
