@@ -6,22 +6,32 @@ It takes some arguments :
 
 """
 
-from web import * # Import the server (TODO) and his handler
-from api import * # Import the API that will be given to the server
+from api.session import *
+from api.test import *
 
+from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)
 
-from http import server # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)
+from web import handler  # Import handler
 
 TEST_PORT = 8008
 PROD_PORT = 80
 
-bind = "127.0.0.1" # Same as localhost or 127.0.0.1
+bind = "127.0.0.1"  # Same as localhost or 127.0.0.1
 port = TEST_PORT
 
-print( "Going to listen at {} on port {}".format("localhost" if bind=="" else bind, port) )
+print("Going to listen at {} on port {}".format("localhost" if bind == "" else bind, port))
 
 
-serv = server.HTTPServer((bind, port), handler.serverHandler)
+class CurrentHandler(handler.ServerHandler):
+    def __init__(self, r, ca, s):
+        self.api = {"session": [login.Login], "test": [example.Example]}
+        self.static = "./static"
+        self.notFound = ""
+
+        super().__init__(r, ca, s)
+
+
+serv = server.HTTPServer((bind, port), CurrentHandler)
 
 try:
     serv.serve_forever()
