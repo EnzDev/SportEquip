@@ -12,6 +12,11 @@ except mysql.connector.Error as err:
     else:
         print (err)
 
+class DAO():
+    def __init__(self):
+        conn = mysql.connector.connect(host="localhost",user="E155122L",password="E155122L", database="E155122L")
+        cursor = conn.cursor()
+        conn.close()
     
 ##Return all the the activities that start with the same latters as the input_string
 def guess_input_activites(input_string):
@@ -48,11 +53,8 @@ def get_activities(city):
         #liste_active.append({'ComLib':[0],'ActLiactiviteb':activite[1]})
     #conn.close()
     return activite;
-   
-    
-    
-   
-   
+
+
 
 
 
