@@ -10,41 +10,44 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="homepage.css" media="screen" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="/js/main.js"></script>
     </head>
     <body>
         <div id="contener">
             <div id="header">
-                <div id="recherche">  
+                <div id="recherche">
                      <form>
                          <div id="rech1">
-                                  Localisation <input id="name" type="text" name="input"> 
-                                 <button id="geoloc" type="button">&#8982</button> 
-                                     Activité <input id="first" type="text" name="input"> 
-                         </div> 
+                                  Localisation <input list="loc" class="loc" type="text" name="input"><datalist id="loc"></datalist>
+
+                                 <button id="geoloc" type="button">&#8982</button>
+                                     Activité <input list="act" class="act" type="text" name="input"><datalist id="act"></datalist>
+                         </div>
                          <div id="rech2">
                                  Distance   <input id="name" type="number" name="input">
-                         </div> 
-               
-                   
+                         </div>
+
+
                      </form>
                     </div>
                 <div id="nbResult"> 0 résultats trouvés </div>
             </div>
             <div id="rightPanel">
                 <ul>
-                    <li> <div> Nom activitée</div> 
+                    <li> <div> Nom activitée</div>
                             <div> adresse</div>
                     </li>
-                     <li> <div> generer a partire</div> 
+                     <li> <div> generer a partire</div>
                             <div> des requettes sqL</div>
                     </li>
-                    <li> <div> Nom activitée</div> 
+                    <li> <div> Nom activitée</div>
                             <div> adresse</div>
                     </li>
-                    <li> <div> Nom activitée</div> 
+                    <li> <div> Nom activitée</div>
                             <div> adresse</div>
                     </li>
-                    <li> <div> Nom activitée</div> 
+                    <li> <div> Nom activitée</div>
                             <div> adresse</div>
                     </li>
                 </ul>
