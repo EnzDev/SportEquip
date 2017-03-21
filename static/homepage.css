@@ -22,6 +22,8 @@ margin: 0;
 #header{
     background-color: #3498DB;
     height: 23vh;
+    position: relative;
+    box-shadow: 1px 0px 10px black;
 }
 #recherche{
    height: 20vh;
@@ -29,37 +31,56 @@ margin: 0;
 }
 
 #nbResult{
-    background-color: #2980B9;
+    background-color: #2980b9;
     height: 3vh;
     width: 95vw;
     font-size: 0.7em;
     color: #3498DB;
     font-style: italic;
     padding-left: 5vw;
+  
+    
 }
 form{
     padding: 1%;
      text-align: center;
 }
 #rightPanel{
-    background-color: #C0392B;
+    background-color: #eee;
     float: right;
     height: 77vh;
     width: 20vw;
+position: relative;
+box-shadow: 0px 10px 10px black;
 }
 #rightPanel ul {
       list-style-type: none;
       padding: 0px;
       margin: 0px;
 }
+#rightPanel ul li{
+      padding-left: 1vw;
+      padding-right: 1vw;
+      padding-top: 1vh;
+      padding-bottom: 1vh;
+      
+}
 #rightPanel ul li:nth-child(odd){
-    background-color: #e74c3c; 
+    background-color: #ddd; 
 }
 #map{
-    background-color: #fff;
+    background-color:#eee;
+
     height: 77vh;
     width: 80vw;
 }
+#map iframe{
+    background-color:#eee;
+
+    height: 77vh;
+    width: 79vw;
+}
+
 
 #geoloc{
     font-size: 1.5em;
@@ -90,6 +111,20 @@ form{
     -webkit-border-radius: 5px;
     border-radius: 5px;
     margin-bottom : 2px;
+}
+#search{
+    background-color: #2980B9;
+    height: 30px;  
+    transition-duration: 0.4s;
+    padding: 0px;
+border:2px solid #2980B9; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom : 2px;
+}
+#search:hover{
+    background-color: #3498DB;
+  
 }
 
 

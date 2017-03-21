@@ -1,0 +1,15 @@
+presentatation
+ pres du foctionnement -> dependance
+ 
+ demo
+ 
+ difficulté subjectif 
+ 
+ diapo - 3-4  15 min
+ 
+ envoie du code
+ -fonctionnel
+ -qualitée de code
+ -robustesse
+ -identifiant des erreur défini, erreur bien attrapé , mesage d'erreur explicite
+ -propreté et lisibilité
