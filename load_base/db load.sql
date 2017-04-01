@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2017 at 03:09 PM
+-- Generation Time: Apr 01, 2017 at 03:54 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activite_eq`
+-- Table structure for table `activite`
 --
 
-CREATE TABLE `activite_eq` (
+CREATE TABLE `activite` (
   `ComInsee` int(6) NOT NULL,
   `ComLib` varchar(30) NOT NULL,
   `EquipementId` int(10) NOT NULL,
@@ -37,15 +37,31 @@ CREATE TABLE `activite_eq` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `commune`
+--
+
+CREATE TABLE `commune` (
+  `ComInsee` int(5) NOT NULL,
+  `ComLib` varchar(40) NOT NULL,
+  `ComCode` int(5) NOT NULL,
+  `EquGpsY` decimal(10,0) NOT NULL,
+  `EquGpsX` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `equipement`
 --
 
 CREATE TABLE `equipement` (
   `ComInsee` int(6) NOT NULL,
-  `InsNumeroInstall` int(12) NOT NULL,
   `InsNomInstall` varchar(25) NOT NULL,
   `EquipementId` int(10) NOT NULL,
-  `EquNom` varchar(25) NOT NULL
+  `EquNom` varchar(25) NOT NULL,
+  `InsNumeroInstall` int(10) NOT NULL,
+  `EquGpsY` decimal(10,0) NOT NULL,
+  `EquGpsX` decimal(10,0) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -58,10 +74,11 @@ CREATE TABLE `installation` (
   `ComInsee` int(6) NOT NULL,
   `ComLib` int(30) NOT NULL,
   `InsNumeroInstall` int(12) NOT NULL,
-  `Adress` text NOT NULL,
+  `Adresse` text NOT NULL,
   `Latitude` decimal(10,0) NOT NULL,
   `Longitude` decimal(10,0) NOT NULL,
-  `ComCode` int(6) NOT NULL
+  `ComCode` int(6) NOT NULL,
+  `NomInstall` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
