@@ -49,17 +49,16 @@ for iterator_activite in fichier_activite:
 #equipement
 for iterator_equipement in fichier_equipement:
     print(iterator_equipement)
-    ligne = {"ComInsee" :   iterator_activite["ComInsee"],"InsNumeroInstall" :   iterator_equipement["InsNumeroInstall"],"InsNomInstall" :   iterator_equipement["InsNomInstall"],"EquipementId":  iterator_equipement["EquipementId"], "EquNom" :   iterator_equipement["EquNom"]}
+    ligne = {"ComInsee" :   iterator_activite["ComInsee"],"InsNumeroInstall" :   iterator_equipement["InsNumeroInstall"],"InsNomInstall" :   iterator_equipement["InsNomInstall"],"EquipementId":  iterator_equipement["EquipementId"], "EquNom" :   iterator_equipement["EquNom"],"EquGpsX" :   iterator_equipement["EquGpsX"],"EquGpsY" :   iterator_equipement["EquGpsY"]}
     cursor.execute("""INSERT IGNORE INTO equipement (ComInsee, InsNumeroInstall, InsNomInstall, EquipementId, EquNom) VALUES(%(ComInsee)s, %(InsNumeroInstall)s, %(InsNomInstall)s,%(EquipementId)s, %(EquNom)s)""", ligne)
     conn.commit()
-
 
 #installation
 for iterator_installation in fichier_installation:
     print(iterator_installation)
     address = iterator_installation["Adresse"] + iterator_installation["ComLib"]+  iterator_installation["ComCode"]
     ligne = {"NomInstall":  iterator_installation["NomInstall"],"InsNumeroInstall":  iterator_installation["InsNumeroInstall"], "Latitude" :   iterator_installation["Latitude"], "Longitude" :   iterator_installation["Longitude"], "ComInsee" :   iterator_installation["ComInsee"], "ComCode" :   iterator_installation["ComCode"], "Adresse" :  address, "ComLib" :   iterator_installation["ComLib"]}
-    cursor.execute("""INSERT IGNORE INTO installations (NomInstall,InsNumeroInstall, Latitude,Longitude,ComInsee,ComCode,Adresse,ComLib) VALUES(%(NomInstall)s,%(InsNumeroInstall)s, %(Latitude)s,%(Longitude)s,%(ComInsee)s,%(ComCode)s,%(Aresse)s,%(ComLib)s)""", ligne)
+    cursor.execute("""INSERT IGNORE INTO installations (NomInstall,InsNumeroInstall, Latitude,Longitude,ComInsee,ComCode,Adresse,ComLib,EquGpsY,EquGpsX) VALUES(%(NomInstall)s,%(InsNumeroInstall)s, %(Latitude)s,%(Longitude)s,%(ComInsee)s,%(ComCode)s,%(Aresse)s,%(ComLib)s),%s(EquGpsY),%s(EquGpsX)""", ligne)
     conn.commit()
 
 

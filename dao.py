@@ -66,7 +66,7 @@ class DAO():
         
         activity = incompleteActivity+"%" #inputed activity field
         activity_set = []
-        for city in list_city:
+        for city in city_set:
             self.cursor.execute("""SELECT DISTINCT ActLib FROM activite WHERE ActLib like %s and comInsee = %s""",[activity,city])
             for  activity_it in self.cursor:
                 activity_set.add(activity_it[0])
@@ -84,49 +84,47 @@ class DAO():
         city = incompleteCity+"%"
         for activity_it in all_activities:
             actCode = activity_it['ActCode']
-            self.cursor.execute("SELECT DISTINCT ComInsee FROM activite  WHERE ActCode = %s and a.ComLib like %s  "+ conditions,[actCode,city])
+            self.cursor.execute("SELECT DISTINCT ComInsee FROM activite  WHERE ActCode = %s and a.ComLib like %s  ",[actCode,city])
             for comInsee_it in self.cursor:
                 city_set.add(comInsee_it[0])
         city_dic = []
         #Getting the name and post code for the city we have in the set
         for city_it in city_set:
             self.cursor.execute("""SELECT DISTINCT ComInsee,ComLib,ComCode FROM installation WHERE ComInsee = %s""",[city_it])
-            city_dic.append({'ComInsee':activite_it[0],'ComLib':activite_it[1],'ComCode':activite_it[2]})
+            city_dic.append({'ComInsee':city_it[0],'ComLib':city_it[1],'ComCode':city_it[2]})
             
             
-    def get_installation(comLib,incompleteActivity,range):
+    def get_installation(self,comLib,incompleteActivity,range):
         """
         Lookup for all the installation that offer the activities provided by the first city guessed by the autocompletion
         @return a dictionnary of installations
         """
         activity_list = self.guess_input_activites(incompleteActivity)
-        cityLatitude,cityLongitude = get_City_Pos(city)
+        cityLatitude,cityLongitude = self.get_City_Pos(comLib)
         city_list = self.get_citiesFrom(self,cityLatitude,cityLongitude,range)
-        installation_set = set()
-        for comInsee from city_list:
-            for activity_it from activity_list:
+        equipement_dic = {}
+        for comInsee in city_list:
+            for activity_it in activity_list:
                 ActCode = activity_it['ActCode']
-                self.cursor.execute("""SELECT DISTINCT instNu FROM activite a,Installation i WHERE ActCode =  %s and comInsee = %s and a.equipementID = i.eqID""",[ActCode,comInsee])
-                for  installation_it in self.cursor:
-                    installation_set.add(installation_it[0])
+                self.cursor.execute("""SELECT DISTINCT a.equipementID,i.EquGpsY,i.EquGpsX,i.EquNom FROM activite a,equipement i WHERE ActCode =  %s and comInsee = %s and a.equipementID = i.eqID""",[ActCode,comInsee])
+                for  equipement_it in self.cursor:
+                    equipement_dic[equipement_it[0]]= {'EquGpsY':equipement_it[1],'EquGpsX':equipement_it[2],'EquNom':equipement_it[3]}
         
-        #Getting the information relatives to alla the output installations
-        #todo 
-        
-        
-            
-    
-            
-            
-             
-         
-         
-        
-        
-            
-        
-            
-        
+        #Getting the information relatives to all the output installations
+        #Adresse
+        for equipement_id in equipement_dic:
+            self.cursor.execute("""SELECT  Adresse FROM Installation WHERE InsNumeroInstall=%s""",[equipement_id])
+            for equipement_it in self.cursor:
+                equipement_dic[equipement_id]['Adresse'] = equipement_it[0]
+        #List of avalable activities
+        for equipement_id in equipement_dic:
+            self.cursor.execute("""SELECT  ActLib FROM activite WHERE EquipementId =%s""", [equipement_id])
+            activity_set = set()
+            for activity_it in self.cursor:
+                activity_set.add(activity_it[0])
+            equipement_dic[equipement_id]['Activite'] = activity_set
+
+
         
     def get_citiesFrom(self,latitude,logitude,radius):
         """
