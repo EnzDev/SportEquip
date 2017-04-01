@@ -23,80 +23,47 @@ except mysql.connector.Error as err:
     exit(-1)
 
 
-
 ##Cleanning tables
 cursor.execute("""DELETE FROM activite WHERE 1""")
-cursor.execute("""DELETE FROM acti_equi WHERE 1""")
-cursor.execute("""DELETE FROM commune WHERE 1""")
 cursor.execute("""DELETE FROM equipement WHERE 1""")
 cursor.execute("""DELETE FROM installations WHERE 1""")
 conn.commit()
 
 ##Filling the tables
+with open(path_ac_eq)  as data_file:
+    fichier_activite = csv.reader(data_file);
 
-with open(path_ac_eq ) as data_file:    
-    fichier_activite = json.load(data_file)
-with open(path_installation) as data_file:    
-    fichier_installation = json.load(data_file)
-with open(path_equimepent) as data_file:    
-    fichier_equipement = json.load(data_file)
+with open(path_installation)  as data_file:
+    fichier_installation = csv.reader(data_file);
+
+with open(path_equimepent)  as data_file:
+    fichier_equipement = csv.reader(data_file);
+
+# Activité
+for iterator_activite in fichier_activite:
+    print(iterator_activite)
+    ligne = {"ComInsee" :   iterator_activite["ComInsee"],"ComLib" :   iterator_activite["ComLib"],"EquipementId" :   iterator_activite["EquipementId"],"ActCode":  iterator_activite["ActCode"], "ActLib" :   iterator_activite["ActLib"]}
+    cursor.execute("""INSERT IGNORE INTO activite (ComInsee, ComLib, EquipementId, ActCode, ActLib)  VALUES(%(ComInsee)s, %(ComLib)s, %(EquipementId)s, %(ActCode)s,%( ActLibs)s)""", ligne)
+    conn.commit()
     
 #equipement
-for iterator_equipement in fichier_equipement['data']:
-    ligne = {"EquipementId":  iterator_equipement["EquipementId"], "EquNom" :   iterator_equipement["EquNom"],"InsNumeroInstall" :   iterator_equipement["InsNumeroInstall"]}
-    cursor.execute("""INSERT IGNORE INTO equipement (EquipementId,EquNom,InsNumeroInstall) VALUES(%(EquipementId)s, %(EquNom)s, %(InsNumeroInstall)s)""", ligne)
+for iterator_equipement in fichier_equipement:
+    print(iterator_equipement)
+    ligne = {"ComInsee" :   iterator_activite["ComInsee"],"InsNumeroInstall" :   iterator_equipement["InsNumeroInstall"],"InsNomInstall" :   iterator_equipement["InsNomInstall"],"EquipementId":  iterator_equipement["EquipementId"], "EquNom" :   iterator_equipement["EquNom"]}
+    cursor.execute("""INSERT IGNORE INTO equipement (ComInsee, InsNumeroInstall, InsNomInstall, EquipementId, EquNom) VALUES(%(ComInsee)s, %(InsNumeroInstall)s, %(InsNomInstall)s,%(EquipementId)s, %(EquNom)s)""", ligne)
     conn.commit()
 
-# #Activité
-for iterator_activite in fichier_activite['data']:
-    ligne = {"ActCode":  iterator_activite["ActCode"], "ActLib" :   iterator_activite["ActLib"]}
-    cursor.execute("""INSERT IGNORE INTO activite (ActCode, ActLib) VALUES(%(ActCode)s, %(ActLib)s)""", ligne)
-    conn.commit()
 
-    ligne = {"ActCode":  iterator_activite["ActCode"],"EquipementId" :   iterator_activite["EquipementId"]}
-    cursor.execute("""INSERT IGNORE INTO acti_equi (ActCode,EquipementId) VALUES(%(ActCode)s, %(EquipementId)s)""", ligne)
-    conn.commit()
- 
 #installation
-for iterator_installation in fichier_installation['data']:
-    ligne = {"ComInsee":  iterator_installation["ComInsee"], "ComLib" :   iterator_installation["ComLib"]}
-    cursor.execute("""INSERT IGNORE INTO commune (ComInsee, ComLib) VALUES(%(ComInsee)s, %(ComLib)s)""", ligne)
+for iterator_installation in fichier_installation:
+    print(iterator_installation)
+    address = iterator_installation["Adresse"] + iterator_installation["ComLib"]+  iterator_installation["ComCode"]
+    ligne = {"NomInstall":  iterator_installation["NomInstall"],"InsNumeroInstall":  iterator_installation["InsNumeroInstall"], "Latitude" :   iterator_installation["Latitude"], "Longitude" :   iterator_installation["Longitude"], "ComInsee" :   iterator_installation["ComInsee"], "ComCode" :   iterator_installation["ComCode"], "Adresse" :  address, "ComLib" :   iterator_installation["ComLib"]}
+    cursor.execute("""INSERT IGNORE INTO installations (NomInstall,InsNumeroInstall, Latitude,Longitude,ComInsee,ComCode,Adresse,ComLib) VALUES(%(NomInstall)s,%(InsNumeroInstall)s, %(Latitude)s,%(Longitude)s,%(ComInsee)s,%(ComCode)s,%(Aresse)s,%(ComLib)s)""", ligne)
     conn.commit()
-    ligne = {"InsNumeroInstall":  iterator_installation["InsNumeroInstall"], "Latitude" :   iterator_installation["Latitude"], "Longitude" :   iterator_installation["Longitude"], "InsCodePostal" :   iterator_installation["InsCodePostal"], "Nom" :   iterator_installation["geo"]["name"], "InsLibelleVoie" :   iterator_installation["InsLibelleVoie"], "ComLib" :   iterator_installation["ComLib"]}
-    cursor.execute("""INSERT IGNORE INTO installations (InsNumeroInstall, Latitude,Longitude,InsCodePostal,Nom,InsLibelleVoie,ComLib) VALUES(%(InsNumeroInstall)s, %(Latitude)s,%(Longitude)s,%(InsCodePostal)s,%(Nom)s,%(InsLibelleVoie)s,%(ComLib)s)""", ligne)
-    conn.commit()
-    
-
-
-
-
-
 
 
 conn.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
