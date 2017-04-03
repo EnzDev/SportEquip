@@ -1,5 +1,11 @@
-import mysql.connector 
+from _decimal import Decimal
+
+import decimal
+import mysql.connector
 import math
+
+from IPython.utils.traitlets import Float
+from mysql.connector import errorcode
 
 class DAO():
     """
@@ -8,7 +14,7 @@ class DAO():
     def __init__(self):
         #Connextion with db
         try:
-            self.conn = mysql.connector.connect(host="infoweb",user="E155122L",password="E155122L", database="E155122L")
+            self.conn = mysql.connector.connect(host="localhost", user="root", password="root", database="SportEquip")
             self.cursor = self.conn.cursor()
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
@@ -62,10 +68,11 @@ class DAO():
         for cityPos_it in self.cursor:
             cities = self.get_citiesFrom(cityPos_it[1],cityPos_it[2],range)
             city_set = city_set.union(cities)
+
             
         
         activity = incompleteActivity+"%" #inputed activity field
-        activity_set = []
+        activity_set = set()
         for city in city_set:
             self.cursor.execute("""SELECT DISTINCT ActLib FROM activite WHERE ActLib like %s and comInsee = %s""",[activity,city])
             for  activity_it in self.cursor:
@@ -84,36 +91,40 @@ class DAO():
         city = incompleteCity+"%"
         for activity_it in all_activities:
             actCode = activity_it['ActCode']
-            self.cursor.execute("SELECT DISTINCT ComInsee FROM activite  WHERE ActCode = %s and a.ComLib like %s  ",[actCode,city])
+            self.cursor.execute("SELECT DISTINCT ComInsee FROM activite  WHERE ActCode = %s and ComLib like %s  ",[actCode,city])
             for comInsee_it in self.cursor:
                 city_set.add(comInsee_it[0])
+
         city_dic = []
         #Getting the name and post code for the city we have in the set
         for city_it in city_set:
             self.cursor.execute("""SELECT DISTINCT ComInsee,ComLib,ComCode FROM installation WHERE ComInsee = %s""",[city_it])
-            city_dic.append({'ComInsee':city_it[0],'ComLib':city_it[1],'ComCode':city_it[2]})
+            for result_it in self.cursor:
+                city_dic.append({'ComInsee':result_it[0],'ComLib':result_it[1],'ComCode':result_it[2]})
+
+        return city_dic
             
             
-    def get_installation(self,comLib,incompleteActivity,range):
+    def get_installation(self,comLib,incompleteActivity,range=0):
         """
         Lookup for all the installation that offer the activities provided by the first city guessed by the autocompletion
         @return a dictionnary of installations
         """
         activity_list = self.guess_input_activites(incompleteActivity)
         cityLatitude,cityLongitude = self.get_City_Pos(comLib)
-        city_list = self.get_citiesFrom(self,cityLatitude,cityLongitude,range)
+        city_list = self.get_citiesFrom(cityLatitude,cityLongitude,range)
         equipement_dic = {}
         for comInsee in city_list:
             for activity_it in activity_list:
                 ActCode = activity_it['ActCode']
-                self.cursor.execute("""SELECT DISTINCT a.equipementID,i.EquGpsY,i.EquGpsX,i.EquNom FROM activite a,equipement i WHERE ActCode =  %s and comInsee = %s and a.equipementID = i.eqID""",[ActCode,comInsee])
+                self.cursor.execute("""SELECT DISTINCT a.equipementID,i.EquGpsY,i.EquGpsX,i.EquNom FROM activite a,equipement i WHERE ActCode =  %s and a.ComInsee = %s and a.equipementID = i.equipementID""",[ActCode,comInsee])
                 for  equipement_it in self.cursor:
                     equipement_dic[equipement_it[0]]= {'EquGpsY':equipement_it[1],'EquGpsX':equipement_it[2],'EquNom':equipement_it[3]}
         
         #Getting the information relatives to all the output installations
         #Adresse
         for equipement_id in equipement_dic:
-            self.cursor.execute("""SELECT  Adresse FROM Installation WHERE InsNumeroInstall=%s""",[equipement_id])
+            self.cursor.execute("""SELECT  Adresse FROM installation WHERE InsNumeroInstall=%s""",[equipement_id])
             for equipement_it in self.cursor:
                 equipement_dic[equipement_id]['Adresse'] = equipement_it[0]
         #List of avalable activities
@@ -123,33 +134,39 @@ class DAO():
             for activity_it in self.cursor:
                 activity_set.add(activity_it[0])
             equipement_dic[equipement_id]['Activite'] = activity_set
+        return equipement_dic
 
 
         
-    def get_citiesFrom(self,latitude,logitude,radius):
+    def get_citiesFrom(self,latitude,longitude,radius=1):
         """
         Get all cities within a range from another based on its coordonates
         @return a set on comInsee
         """
         #calculation of the longitude whitin range
-        minLat,maxLat   =  sorted((round(latitude - 1/110.574*radius ,5),round(latitude + 1/110.574*radius ,5)))
-        minLong,maxLong =  sorted((round(longitude - 1/(111.320*math.cos(latitude)) *radius ,5),round(longitude + 1/(111.320*math.cos(latitude)) *radius ,5)))
+        minLat,maxLat   =  sorted((round(latitude - 1/110.574*radius ,3),round(latitude +1/110.574*radius ,3)))
+        minLong,maxLong =  sorted((round(longitude -1/(111.320*math.cos(latitude)) *radius ,3),round(longitude + 1/(111.320*math.cos(latitude)) *radius ,3)))
+        minLat = round(minLat - 0.001, 3)
+        minLong = round(minLong - 0.005, 3)
+        maxLong = round(maxLong + 0.005, 3)
+
         #get cities that match the range
-        condition =  ( "i.Latitude > "+ minLat + " and i.Latitude < " +maxLat+ " and i.Longitude > "+minLong +"and i.Longitude < "+maxLong)
-        self.cursor.execute("SELECT DISTINCT i.ComInsee FROM installation i WHERE"+condition)
+        condition =  ( "i.Latitude >= "+ str(minLat) + " and i.Latitude <= " + str(maxLat)+ "  and i.Longitude >= "+str(minLong) +" and i.Longitude <= "+ str(maxLong))
+        self.cursor.execute("SELECT DISTINCT i.ComInsee FROM installation i WHERE "+condition)
         city_set = set()
         for city in self.cursor:
             city_set.add(city[0])
         return city_set
         
-    def get_City_Pos(incompleteCity):
+    def get_City_Pos(self,incompleteCity):
         """
         Get city coordonates
         @return a set on comInsee
         """
         city = incompleteCity+"%" #inputed city field
         self.cursor.execute("""SELECT DISTINCT ComInsee,latitude,longitude FROM installation WHERE (ComLib like %s OR ComInsee like  %s)""",[city,city])
-        return [cityPos_it[1],cityPos_it[2]]
+        for cityPos_it in self.cursor:
+            return [float(cityPos_it[1]),float(cityPos_it[2])]
             
             
 
