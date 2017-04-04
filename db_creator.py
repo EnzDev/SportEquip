@@ -6,31 +6,24 @@ from pprint import pprint
 
 ##Lien des fichiers de config
 def get_path():
+    """
+        Initialise the path to the projects
+    """
     path_ac_eq = "load_base/activite_eq.csv"
     path_installation = "load_base/installation.csv"
     path_equimepent = "load_base/equipement.csv"
     return [path_ac_eq, path_installation, path_equimepent]
 
 
-##Connextion with db
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##Filling the tables
 def parse_activite():
+    """
+        Parse the activity file and put in into the table
+    """
     cursor.execute("""DELETE FROM activite WHERE 1""")
     conn.commit()
-    with open(get_path()[0])  as data_file:
+    #check encoding to handle é ans è
+    with open(get_path()[0], encoding = "Windows-1252")  as data_file:
         fichier_activite = csv.DictReader(data_file);
         # Activité
         for iterator_activite in fichier_activite:
@@ -45,9 +38,13 @@ def parse_activite():
 
 
 def parse_installation():
+    """
+        Parse the installation file and put in into the table
+    """
     cursor.execute("""DELETE FROM installation WHERE 1""")
     conn.commit()
-    with open(get_path()[1])  as data_file:
+    #check encoding to handle é ans è
+    with open(get_path()[1], encoding = "Windows-1252")  as data_file:
         fichier_installation = csv.DictReader(data_file);
         # installation
         for iterator_installation in fichier_installation:
@@ -68,11 +65,14 @@ def parse_installation():
 
 
 def parse_equipement():
-    with open(get_path()[2])  as data_file:
+    """
+        Parse the equipement file and put in into the table
+    """
+    with open(get_path()[2],encoding = "Windows-1252")  as data_file:
         cursor.execute("""DELETE FROM equipement WHERE 1""")
         conn.commit()
         fichier_equipement = csv.DictReader(data_file);
-        # equipement
+        #check encoding to handle é ans è
         for iterator_equipement in fichier_equipement:
             # print(iterator_equipement)
             ligne = [iterator_equipement["ComInsee"], iterator_equipement["InsNumeroInstall"],
@@ -87,12 +87,11 @@ def parse_equipement():
 
 
 
-
-
-
-
+"""
+    Launch everything
+"""
 try:
-    conn = mysql.connector.connect(host="localhost", user="root", password="", database="SportEquip")
+    conn = mysql.connector.connect(host="infoweb",user="E155122L",password="E155122L", database="E155122L")
     cursor = conn.cursor()
     parse_installation()
     parse_equipement()

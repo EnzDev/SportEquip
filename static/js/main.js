@@ -85,7 +85,13 @@ $( function(){
       if(range!="")
         $.post("api/sport/city", {"city":city}, function(d){
             if(window.range) window.range.remove()
+            if  (range <= 3){
+             window.range = L.circle([d[0], d[1]], 3*1000).addTo(map)
+            }
+            else{
             window.range = L.circle([d[0], d[1]], range*1000).addTo(map)
+            }
+
         })
 
   })

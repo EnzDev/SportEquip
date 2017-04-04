@@ -21,10 +21,10 @@ print(r)
 # r = DAO().guess_Activities_byGCity("nan", "t", 10)
 # print(r)
 #
-r = DAO().guess_City_byGActivity("nal", "ten")
-print(r)
-
-# r = DAO().get_installation("Nantes", "ten")
+# r = DAO().guess_City_byGActivity("nal", "ten")
 # print(r)
+
+r = DAO().get_installation("Nantes", "ten")
+print(r)
 
 #

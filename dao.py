@@ -8,11 +8,10 @@ class DAO():
     """
     Provide all the methods to connect between the database and the serveur
     """
-
     def __init__(self):
         # Connextion with db
         try:
-            self.conn = mysql.connector.connect(host="localhost", user="root", password="", database="SportEquip")
+            self.conn = mysql.connector.connect(host="infoweb",user="E155122L",password="E155122L", database="E155122L")
             self.cursor = self.conn.cursor()
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
@@ -145,6 +144,7 @@ class DAO():
         minLat, maxLat = sorted((round(latitude - 1 / 110.574 * radius, 3), round(latitude + 1 / 110.574 * radius, 3)))
         minLong, maxLong = sorted((round(longitude - 1 / (111.320 * math.cos(latitude)) * radius, 3),
                                    round(longitude + 1 / (111.320 * math.cos(latitude)) * radius, 3)))
+        # Because otherwise mysql can't compare floats properly if they are too close to each other
         minLat = round(minLat - 0.001, 3)
         minLong = round(minLong - 0.005, 3)
         maxLong = round(maxLong + 0.005, 3)
