@@ -29,8 +29,9 @@ and open the template in the editor.
                                      Activité <input list="act" class="act" type="text" name="input"><datalist id="act"></datalist>
                          </div>
                          <div id="rech2">
-                                 Distance   <input class="ran" id="name" type="number" name="input" min="0">
-                                  <button id="search" type="button">Rechercher</button>
+                                 Distance   <input class="ran" id="name"  type="range" min="0" max="50" value="0" step="1" onchange="showValue(this.value)" />
+                                <span id="range">0</span>
+                                <button id="search" type="button">Rechercher</button>
                          </div>
 
 
@@ -61,5 +62,13 @@ and open the template in the editor.
                 accessToken: 'pk.eyJ1IjoieG9tYW4iLCJhIjoiY2oxMnR4amFnMDAwMjJxcXcybnc5YWZjeSJ9.vIBkiX6Mpd41TepwkyLsWg'
             }).addTo(map);
         </script>
+
+        <script type="text/javascript">
+        function showValue(newValue)
+        {
+            document.getElementById("range").innerHTML=newValue;
+        }
+        </script>
+
     </body>
 </html>
