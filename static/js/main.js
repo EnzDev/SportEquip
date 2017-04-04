@@ -58,8 +58,9 @@ $( function(){
 
         bounds = [[undefined,undefined],[undefined,undefined]] // 
         $("#rightPanel ul").empty()
-        l = d.length>1 ? "s" : "";
-        $("#nbresult").html(d.length +" résultat" + l + " trouvé"+l)
+
+        sss = Object.keys(d).length>1 ? "s" : "";
+        $("#nbResult").html(Object.keys(d).length +" résultat" + sss + " trouvé" + sss)
 
         for(noEquip in d){
           var equip = d[noEquip]
@@ -81,10 +82,11 @@ $( function(){
         map.fitBounds(bounds);
       })
 
-      $.post("api/sport/city", {"city":city}, function(d){
-          if(window.range) window.range.remove()
-          window.range = L.circle([d[0], d[1]], range*1000).addTo(map)
-      })
+      if(range!="")
+        $.post("api/sport/city", {"city":city}, function(d){
+            if(window.range) window.range.remove()
+            window.range = L.circle([d[0], d[1]], range*1000).addTo(map)
+        })
 
   })
 
