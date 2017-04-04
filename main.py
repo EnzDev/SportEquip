@@ -26,7 +26,7 @@ port = TEST_PORT
 
 
 
-# Arguments to customise the launch (as described when launching)
+# Arguments to customise the launch (as described when launching with -h or --help)
 parser = argparse.ArgumentParser(prog="python3 main.py")
 
 parser.add_argument('--port', type=int, help="Port to listen")
