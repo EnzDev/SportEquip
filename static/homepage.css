@@ -16,7 +16,7 @@ margin: 0;
 	vertical-align: baseline;
 	text-decoration: none;
 	color: inherit;
-        font-family: verdana;
+    font-family: helvetica;
 }
 
 b{
@@ -51,15 +51,15 @@ form{
      text-align: center;
 }
 #rightPanel{
-    background-color: #eee;
+    background-color: #c4cfdf;
     float: right;
     height: 77vh;
     width: 20vw;
-position: absolute;
-box-shadow: 0px 10px 10px black;
-overflow-y: auto;
-right: 0;
-top: 23vh;
+    position: absolute;
+    box-shadow: 0px 10px 10px black;
+    overflow-y: auto;
+    right: 0;
+    top: 23vh;
 }
 #rightPanel ul {
       list-style-type: none;
@@ -74,7 +74,7 @@ top: 23vh;
       
 }
 #rightPanel ul li:nth-child(odd){
-    background-color: #ddd; 
+    background-color: #b5c0d1;
 }
 
 #map {
