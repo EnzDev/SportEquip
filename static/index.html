@@ -11,7 +11,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="homepage.css" media="screen" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="/js/main.js"></script>
+        
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+		
+        <script src="/js/main.js"></script>
     </head>
     <body>
         <div id="contener">
@@ -25,7 +29,7 @@ and open the template in the editor.
                                      Activité <input list="act" class="act" type="text" name="input"><datalist id="act"></datalist>
                          </div>
                          <div id="rech2">
-                                 Distance   <input id="name" type="number" name="input">
+                                 Distance   <input class="ran" id="name" type="number" name="input">
                                   <button id="search" type="button">Rechercher</button>
                          </div>
 
@@ -40,37 +44,22 @@ and open the template in the editor.
                         <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
                         <div class="address"> adresseadresse adresseadresse adresseadresse</div>
                     </li>
-                    <li>
-                        <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
-                        <div class="address"> dresseadresse adresseadresse adres</div>
-                    </li>
-                    <li>
-                        <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
-                        <div class="address"> dresseadresse adresseadresse adres</div>
-                    </li>
-                    <li>
-                        <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
-                        <div class="address"> dresseadresse adresseadresse adres</div>
-                    </li>
-                    <li>
-                        <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
-                        <div class="address"> dresseadresse adresseadresse adres</div>
-                    </li>
-                    <li>
-                        <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
-                        <div class="address"> dresseadresse adresseadresse adres</div>
-                    </li>
-                    <li>
-                        <div class="nom_act"> Nom activitée</div> <div class="comune"> Comune</div>
-                        <div class="address"> dresseadresse adresseadresse adres</div>
-                    </li>
                 </ul>
             </div>
             <div id="map">
-            <iframe  frameborder="0" scrolling="no" marginheight="0" marginwidth="0"        src="http://www.openstreetmap.org/export/embed.html?bbox=";
-            layer=mapnik" >
-            </iframe><
+
             </div>
         </div>
+
+        <script type="text/javascript" src="http://maplib.khtml.org/khtml.maplib/khtml_all.js"> </script>
+        <script type="text/javascript" > 
+            var map=L.map(document.getElementById("map"));
+            map.setView([47.6, -0.467], 8) //latitude, longitude, zoom    pk.eyJ1IjoieG9tYW4iLCJhIjoiY2oxMnR4amFnMDAwMjJxcXcybnc5YWZjeSJ9.vIBkiX6Mpd41TepwkyLsWg
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                accessToken: 'pk.eyJ1IjoieG9tYW4iLCJhIjoiY2oxMnR4amFnMDAwMjJxcXcybnc5YWZjeSJ9.vIBkiX6Mpd41TepwkyLsWg'
+            }).addTo(map);
+        </script>
     </body>
 </html>

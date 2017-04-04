@@ -6,8 +6,6 @@ It takes some arguments :
 
 """
 
-from api.session import *
-from api.test import *
 from api.sport import *
 
 from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)
@@ -25,7 +23,7 @@ print("Going to listen at {} on port {}".format("localhost" if bind == "" else b
 
 class CurrentHandler(handler.ServerHandler):
     def __init__(self, r, ca, s):
-        self.api = {"session": [login.Login], "test": [example.Example], "sport":[city.city]}
+        self.api = {"sport": [city.city, activity.activity, installation.installation]}
         self.static = "./static"
         self.notFound = ""
 

@@ -133,7 +133,6 @@ class ServerHandler(http.server.BaseHTTPRequestHandler):
 
             if type(result) == tuple:  # as defined in BaseApi
                 self.send_error(result[0], result[1])
-                print("error")
 
             try:
                 # Start of header

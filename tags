@@ -1,0 +1,152 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BaseApi	api/BaseApi.py	/^class BaseApi:$/;"	kind:class	line:6
+BaseApi	api/session/login.py	/^from api.BaseApi import BaseApi$/;"	kind:namespace	line:1
+BaseApi	api/sport/activity.py	/^from api.BaseApi import BaseApi$/;"	kind:namespace	line:1
+BaseApi	api/sport/city.py	/^from api.BaseApi import BaseApi$/;"	kind:namespace	line:1
+BaseApi	api/sport/installation.py	/^from api.BaseApi import BaseApi$/;"	kind:namespace	line:1
+BaseApi	api/test/example.py	/^from api.BaseApi import BaseApi$/;"	kind:namespace	line:1
+BaseApi.py	api/BaseApi.py	1;"	kind:file	line:1
+CurrentHandler	main.py	/^class CurrentHandler(handler.ServerHandler):$/;"	kind:class	line:24
+DAO	api/sport/activity.py	/^from dao import DAO$/;"	kind:namespace	line:2
+DAO	api/sport/city.py	/^from dao import DAO$/;"	kind:namespace	line:2
+DAO	api/sport/installation.py	/^from dao import DAO$/;"	kind:namespace	line:2
+DAO	dao.py	/^class DAO():$/;"	kind:class	line:7
+DAO	testDao.py	/^from dao import DAO$/;"	kind:namespace	line:1
+Example	api/test/example.py	/^class Example(BaseApi):$/;"	kind:class	line:5
+Import	main.py	/^from web import handler  # Import handler$/;"	kind:namespace	line:13
+JSONDecEncoder	JSONDecEncoder.py	/^class JSONDecEncoder(json.JSONEncoder):$/;"	kind:class	line:5
+JSONDecEncoder	api/sport/activity.py	/^from JSONDecEncoder import JSONDecEncoder$/;"	kind:namespace	line:3
+JSONDecEncoder	api/sport/city.py	/^from JSONDecEncoder import JSONDecEncoder$/;"	kind:namespace	line:3
+JSONDecEncoder	api/sport/installation.py	/^from JSONDecEncoder import JSONDecEncoder$/;"	kind:namespace	line:3
+JSONDecEncoder.py	JSONDecEncoder.py	1;"	kind:file	line:1
+Login	api/session/login.py	/^class Login(BaseApi):$/;"	kind:class	line:4
+PROD_PORT	main.py	/^PROD_PORT = 80$/;"	kind:variable	line:16
+ServerHandler	web/handler.py	/^class ServerHandler(http.server.BaseHTTPRequestHandler):$/;"	kind:class	line:16
+TEST_PORT	main.py	/^TEST_PORT = 8008$/;"	kind:variable	line:15
+XXX	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+__all__	__init__.py	/^__all__ = ["api", "web"]$/;"	kind:variable	line:1
+__all__	api/session/__init__.py	/^__all__ = ["login"]$/;"	kind:variable	line:1
+__all__	api/sport/__init__.py	/^__all__ = ["activity", "city", "installation"]$/;"	kind:variable	line:1
+__all__	api/test/__init__.py	/^__all__ = ["example"]/;"	kind:variable	line:1
+__all__	web/__init__.py	/^__all__ = ["handler"]$/;"	kind:variable	line:1
+__init__	api/BaseApi.py	/^    def __init__(self):$/;"	kind:member	line:10
+__init__	api/session/login.py	/^    def __init__(self):$/;"	kind:member	line:5
+__init__	api/sport/activity.py	/^    def __init__(self):$/;"	kind:member	line:7
+__init__	api/sport/city.py	/^    def __init__(self):$/;"	kind:member	line:7
+__init__	api/sport/installation.py	/^    def __init__(self):$/;"	kind:member	line:7
+__init__	api/test/example.py	/^    def __init__(self):$/;"	kind:member	line:6
+__init__	dao.py	/^    def __init__(self):$/;"	kind:member	line:12
+__init__	main.py	/^    def __init__(self, r, ca, s):$/;"	kind:member	line:25
+__init__	web/handler.py	/^    def __init__(self, r, ca, s):$/;"	kind:member	line:17
+__init__.py	__init__.py	1;"	kind:file	line:1
+__init__.py	api/session/__init__.py	1;"	kind:file	line:1
+__init__.py	api/sport/__init__.py	1;"	kind:file	line:1
+__init__.py	api/test/__init__.py	1;"	kind:file	line:1
+__init__.py	web/__init__.py	1;"	kind:file	line:1
+a	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+about	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+activity	api/sport/activity.py	/^class activity(BaseApi):$/;"	kind:class	line:6
+activity.py	api/sport/activity.py	1;"	kind:file	line:1
+bind	main.py	/^bind = "127.0.0.1"  # Same as localhost or 127.0.0.1$/;"	kind:variable	line:18
+cgi	web/handler.py	/^import cgi$/;"	kind:namespace	line:6
+city	api/sport/city.py	/^class city(BaseApi):$/;"	kind:class	line:6
+city.py	api/sport/city.py	1;"	kind:file	line:1
+conn	db_creator.py	/^    conn = mysql.connector.connect(host="localhost", user="root", password="", database="SportEquip")$/;"	kind:variable	line:95
+conn	load_base/db_creator.py	/^    conn = mysql.connector.connect(host="infoweb",user="E155122L",password="E155122L", database="E155122L")$/;"	kind:variable	line:13
+connector	dao.py	/^import mysql.connector$/;"	kind:namespace	line:1
+connector	db_creator.py	/^import mysql.connector$/;"	kind:namespace	line:1
+connector	load_base/db_creator.py	/^import mysql.connector$/;"	kind:namespace	line:1
+csv	db_creator.py	/^import csv$/;"	kind:namespace	line:3
+cursor	db_creator.py	/^    cursor = conn.cursor()$/;"	kind:variable	line:96
+cursor	load_base/db_creator.py	/^    cursor = conn.cursor()$/;"	kind:variable	line:14
+dao.py	dao.py	1;"	kind:file	line:1
+db_creator.py	db_creator.py	1;"	kind:file	line:1
+db_creator.py	load_base/db_creator.py	1;"	kind:file	line:1
+decimal	JSONDecEncoder.py	/^import decimal$/;"	kind:namespace	line:1
+default	JSONDecEncoder.py	/^    def default(self, obj):$/;"	kind:member	line:6
+delete	api/BaseApi.py	/^    def delete(self, infile):$/;"	kind:member	line:31
+delete	api/test/example.py	/^    def delete(self, infile):$/;"	kind:member	line:23
+do404	web/handler.py	/^    def do404(self, filename):$/;"	kind:member	line:81
+do_DELETE	web/handler.py	/^    def do_DELETE(self):$/;"	kind:member	line:40
+do_GET	web/handler.py	/^    def do_GET(self):$/;"	kind:member	line:31
+do_POST	web/handler.py	/^    def do_POST(self):$/;"	kind:member	line:37
+do_PUT	web/handler.py	/^    def do_PUT(self):$/;"	kind:member	line:34
+errorcode	dao.py	/^from mysql.connector import errorcode$/;"	kind:namespace	line:4
+errorcode	db_creator.py	/^from mysql.connector import errorcode$/;"	kind:namespace	line:2
+example.py	api/test/example.py	1;"	kind:file	line:1
+fichier_activite	load_base/db_creator.py	/^    fichier_activite = json.load(data_file)$/;"	kind:variable	line:38
+fichier_equipement	load_base/db_creator.py	/^    fichier_equipement = json.load(data_file)$/;"	kind:variable	line:42
+fichier_installation	load_base/db_creator.py	/^    fichier_installation = json.load(data_file)$/;"	kind:variable	line:40
+for	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+future	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+get	api/BaseApi.py	/^    def get(self, infile):$/;"	kind:member	line:22
+get	api/session/login.py	/^    def get(self, infile):$/;"	kind:member	line:12
+get	api/sport/activity.py	/^    def get(self, inp):$/;"	kind:member	line:11
+get	api/sport/city.py	/^    def get(self, inp):$/;"	kind:member	line:11
+get	api/sport/installation.py	/^    def get(self, inp):$/;"	kind:member	line:11
+get	api/test/example.py	/^    def get(self, infile):$/;"	kind:member	line:26
+get_City_Pos	dao.py	/^    def get_City_Pos(self, incompleteCity):$/;"	kind:member	line:162
+get_citiesFrom	dao.py	/^    def get_citiesFrom(self, latitude, longitude, radius=1):$/;"	kind:member	line:137
+get_installation	dao.py	/^    def get_installation(self, comLib, incompleteActivity, range=0):$/;"	kind:member	line:103
+get_path	db_creator.py	/^def get_path():$/;"	kind:function	line:8
+guess_Activities_byGCity	dao.py	/^    def guess_Activities_byGCity(self, incompleteCity, incompleteActivity, range=0):$/;"	kind:member	line:55
+guess_City_byGActivity	dao.py	/^    def guess_City_byGActivity(self, incompleteCity, incompleteActivity):$/;"	kind:member	line:78
+guess_input_activites	dao.py	/^    def guess_input_activites(self, input_string):$/;"	kind:member	line:25
+guess_input_positions	dao.py	/^    def guess_input_positions(self, input_string):$/;"	kind:member	line:39
+handleAPI	web/handler.py	/^    def handleAPI(self, proto):$/;"	kind:member	line:89
+handleReq	web/handler.py	/^    def handleReq(self, proto):$/;"	kind:member	line:43
+handler	main.py	/^from web import handler  # Import handler$/;"	kind:namespace	line:13
+handler.py	web/handler.py	1;"	kind:file	line:1
+http	web/handler.py	/^import http.server$/;"	kind:namespace	line:7
+installation	api/sport/installation.py	/^class installation(BaseApi):$/;"	kind:class	line:6
+installation.py	api/sport/installation.py	1;"	kind:file	line:1
+isApi	web/handler.py	/^def isApi(urlpath):$/;"	kind:function	line:159
+json	JSONDecEncoder.py	/^import json$/;"	kind:namespace	line:2
+json	load_base/db_creator.py	/^import json$/;"	kind:namespace	line:2
+ligne	load_base/db_creator.py	/^    ligne = {"ActCode":  iterator_activite["ActCode"], "ActLib" :   iterator_activite["ActLib"]}$/;"	kind:variable	line:52
+ligne	load_base/db_creator.py	/^    ligne = {"ActCode":  iterator_activite["ActCode"],"EquipementId" :   iterator_activite["EquipementId"]}$/;"	kind:variable	line:56
+ligne	load_base/db_creator.py	/^    ligne = {"ComInsee":  iterator_installation["ComInsee"], "ComLib" :   iterator_installation["ComLib"]}$/;"	kind:variable	line:62
+ligne	load_base/db_creator.py	/^    ligne = {"EquipementId":  iterator_equipement["EquipementId"], "EquNom" :   iterator_equipement["EquNom"],"InsNumeroInstall" :   iterator_equipement["InsNumeroInstall"]}$/;"	kind:variable	line:46
+ligne	load_base/db_creator.py	/^    ligne = {"InsNumeroInstall":  iterator_installation["InsNumeroInstall"], "Latitude" :    float(iterator_installation["Latitude"]), "Longitude" :    float(iterator_installation["Longitude"]), "InsCodePostal" :   iterator_installation["InsCodePostal"], "Nom" :   iterator_installation["geo"]["name"], "InsLibelleVoie" :   iterator_installation["InsLibelleVoie"], "ComLib" :   iterator_installation["ComLib"]}$/;"	kind:variable	line:65
+login.py	api/session/login.py	1;"	kind:file	line:1
+main.py	main.py	1;"	kind:file	line:1
+math	dao.py	/^import math$/;"	kind:namespace	line:2
+multithreading	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+mysql	dao.py	/^import mysql.connector$/;"	kind:namespace	line:1
+mysql	db_creator.py	/^import mysql.connector$/;"	kind:namespace	line:1
+mysql	load_base/db_creator.py	/^import mysql.connector$/;"	kind:namespace	line:1
+os	web/handler.py	/^import os$/;"	kind:namespace	line:10
+parse_activite	db_creator.py	/^def parse_activite():$/;"	kind:function	line:30
+parse_equipement	db_creator.py	/^def parse_equipement():$/;"	kind:function	line:70
+parse_installation	db_creator.py	/^def parse_installation():$/;"	kind:function	line:47
+path_ac_eq	load_base/db_creator.py	/^path_ac_eq = "\/hometu\/etudiants\/l\/e\/E154981H\/Documents\/jousselin\/activite_eq.json"$/;"	kind:variable	line:7
+path_equimepent	load_base/db_creator.py	/^path_equimepent = "\/hometu\/etudiants\/l\/e\/E154981H\/Documents\/jousselin\/equipement.json"$/;"	kind:variable	line:9
+path_installation	load_base/db_creator.py	/^path_installation = "\/hometu\/etudiants\/l\/e\/E154981H\/Documents\/jousselin\/installation.json"$/;"	kind:variable	line:8
+placeholder	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+port	main.py	/^port = TEST_PORT$/;"	kind:variable	line:19
+posixpath	web/handler.py	/^import posixpath$/;"	kind:namespace	line:12
+post	api/BaseApi.py	/^    def post(self, infile):$/;"	kind:member	line:25
+post	api/session/login.py	/^    def post(self, infile):$/;"	kind:member	line:9
+post	api/test/example.py	/^    def post(self, infile):$/;"	kind:member	line:12
+pprint	db_creator.py	/^from pprint import pprint$/;"	kind:namespace	line:4
+pprint	load_base/db_creator.py	/^from pprint import pprint$/;"	kind:namespace	line:3
+put	api/BaseApi.py	/^    def put(self, infile):$/;"	kind:member	line:28
+put	api/test/example.py	/^    def put(self, infile):$/;"	kind:member	line:20
+r	testDao.py	/^r = DAO().guess_City_byGActivity("nal", "ten")$/;"	kind:variable	line:24
+r	testDao.py	/^r = DAO().guess_input_positions("nall")$/;"	kind:variable	line:6
+re	web/handler.py	/^import re$/;"	kind:namespace	line:13
+register.py	api/session/register.py	1;"	kind:file	line:1
+serv	main.py	/^serv = server.HTTPServer((bind, port), CurrentHandler)$/;"	kind:variable	line:33
+serve	web/handler.py	/^    def serve(self):$/;"	kind:member	line:50
+server	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+server	web/handler.py	/^import http.server$/;"	kind:namespace	line:7
+shutil	web/handler.py	/^import shutil$/;"	kind:namespace	line:9
+testDao.py	testDao.py	1;"	kind:file	line:1
+the	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+think	main.py	/^from http import server  # XXX : server.HTTPServer as a placeholder for the future server (think about multithreading)$/;"	kind:namespace	line:11
+urllib	web/handler.py	/^import urllib$/;"	kind:namespace	line:11

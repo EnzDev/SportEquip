@@ -19,10 +19,14 @@ margin: 0;
         font-family: verdana;
 }
 
+b{
+    font-weight: bold;
+}
+
 #header{
     background-color: #3498DB;
     height: 23vh;
-    position: relative;
+    position: fixed;
     box-shadow: 1px 0px 10px black;
 }
 #recherche{
@@ -50,8 +54,11 @@ form{
     float: right;
     height: 77vh;
     width: 20vw;
-position: relative;
+position: absolute;
 box-shadow: 0px 10px 10px black;
+overflow-y: auto;
+right: 0;
+top: 23vh;
 }
 #rightPanel ul {
       list-style-type: none;
@@ -68,19 +75,19 @@ box-shadow: 0px 10px 10px black;
 #rightPanel ul li:nth-child(odd){
     background-color: #ddd; 
 }
-#map{
-    background-color:#eee;
 
+#map {
+    background-color: #eee;
     height: 77vh;
     width: 80vw;
-}
-#map iframe{
-    background-color:#eee;
-
-    height: 77vh;
-    width: 79vw;
+    top: 23vh;
+    z-index: -1;
 }
 
+#contener {
+    height: 0;
+    width: 0;
+}
 
 #geoloc{
     font-size: 1.5em;
